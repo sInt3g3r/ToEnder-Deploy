@@ -4,14 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToEnder</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <h1>ToEnder</h1>
     </header>
+    <nav>
+        <input type="button" value="Erfassen" id="btnErfassen">
+        <select name="view" id="selectView">
+            <option value="month">Monatsansicht</option>
+            <option value="weeek">Wochenansicht</option>
+        </select>
+    </nav>
     <main>
         <script>
-            alert("Hallo Welt!");
+            document.getElementById("btnErfassen").addEventListener("click", () => alert('button Pressed'));
         </script>
     </main>
 </body>

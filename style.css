@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    width: 98%;
+    height: 98%;
+    padding: 1%;
+}
+  
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: yellow;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: blue;
+}
+
+#btnErfassen {
+    border-radius: 5px;
+    width: 80px;
+    margin: 3px 0;
+    margin-left: 10px;
+}
+
+#selectView{
+    width: 120px;
+    margin: 3px 0;
+    margin-right: 10px;
+}
