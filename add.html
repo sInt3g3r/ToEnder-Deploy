@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Erfassen</title>
     <link rel="stylesheet" href="addStyle.css">
+    <script src="add.js"></script>
 </head>
 <body>
     <form>
@@ -19,8 +20,15 @@
             <input type="button" value="Abbrechen" id="btnCancel">
             <input type="button" value="Speichern" id="btnSave">
             <script>
+                function test()
+                {
+                    console.log(document.getElementById("title").value);
+                    console.log(document.getElementById("description").value);
+                    console.log(document.getElementById("date").value);
+                };
+
                 document.getElementById("btnCancel").addEventListener("click", () => (window.location='/index.html'));
-                document.getElementById("btnSave").addEventListener("click", () => alert('hallo'));
+                document.getElementById("btnSave").addEventListener("click", () => test());
             </script>
        </div>
     </form>

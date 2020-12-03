@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToEnder</title>
     <link rel="stylesheet" href="style.css">
+    <script src="add.js"></script>
 </head>
 <body>
     <header>
@@ -13,6 +14,7 @@
     <nav>
         <form>
             <input type="button" value="Erfassen" id="btnErfassen">
+            <input type="button" value="Test" id="btnTest">
             <select name="view" id="selectView">
                 <option value="month">Monatsansicht</option>
                 <option value="weeek">Wochenansicht</option>
@@ -22,6 +24,8 @@
     <main>
         <script>
             document.getElementById("btnErfassen").addEventListener("click", () => (window.location='/add.html'));
+            document.getElementById("btnTest").addEventListener("click", () => clearAllCards());
+            console.log(JSON.parse(localStorage.getItem('cards')));
         </script>
     </main>
 </body>
