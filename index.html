@@ -11,15 +11,17 @@
         <h1>ToEnder</h1>
     </header>
     <nav>
-        <input type="button" value="Erfassen" id="btnErfassen">
-        <select name="view" id="selectView">
-            <option value="month">Monatsansicht</option>
-            <option value="weeek">Wochenansicht</option>
-        </select>
+        <form>
+            <input type="button" value="Erfassen" id="btnErfassen">
+            <select name="view" id="selectView">
+                <option value="month">Monatsansicht</option>
+                <option value="weeek">Wochenansicht</option>
+            </select>
+        </form>
     </nav>
     <main>
         <script>
-            document.getElementById("btnErfassen").addEventListener("click", () => alert('button Pressed'));
+            document.getElementById("btnErfassen").addEventListener("click", () => (window.location='/add.html'));
         </script>
     </main>
 </body>

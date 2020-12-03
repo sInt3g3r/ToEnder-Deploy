@@ -4,9 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Erfassen</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="addStyle.css">
 </head>
 <body>
-    <h1>test</h1>
+    <form>
+       <input type="text" id="title">
+       <textarea id="description" rows="4" cols="10" maxlength="100"></textarea>
+       <input type="date" id="date">
+       <div>
+            <input type="checkbox" id="done" name="done" value=0>
+            <label for="done">Fertig</label>
+       </div>
+       <div>
+            <input type="button" value="Abbrechen" id="btnCancel">
+            <input type="button" value="Speichern" id="btnSave">
+            <script>
+                document.getElementById("btnCancel").addEventListener("click", () => (window.location='/index.html'));
+                document.getElementById("btnSave").addEventListener("click", () => alert('hallo'));
+            </script>
+       </div>
+    </form>
 </body>
 </html>

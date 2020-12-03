@@ -18,14 +18,14 @@ header {
     background-color: yellow;
 }
 
-nav {
+form {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     background-color: blue;
 }
 
-#btnErfassen {
+input[type=button] {
     border-radius: 5px;
     width: 80px;
     margin: 3px 0;

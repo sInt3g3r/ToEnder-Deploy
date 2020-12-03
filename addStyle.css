@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    width: 98%;
+    height: 98%;
+    padding: 1%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+
+input[type=text], input[type=date]{
+    width: 50%;
+    background-color: antiquewhite;
+    border: 1px solid black;
+    margin: 5px;
+}
+
+#description{
+    width: 50%;
+    border: 1px solid black;
+    background-color: antiquewhite;
+    margin: 5px
+}
+
+input[type=button], input[type=submit] {
+    border-radius: 5px;
+    width: 80px;
+    margin: 3px;
+    margin-left: 10px;
+}
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
+  padding: 10px;
+}
