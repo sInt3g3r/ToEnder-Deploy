@@ -4,28 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToEnder</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="add.js"></script>
+    <link rel="stylesheet" href="indexStyle.css">
+    <script src="index.js"></script>
 </head>
-<body>
+<body onload="load()">
     <header>
         <h1>ToEnder</h1>
     </header>
     <nav>
         <form>
             <input type="button" value="Erfassen" id="btnErfassen">
-            <input type="button" value="Test" id="btnTest">
+            <input type="button" value="Clear" id="btnTest">
             <select name="view" id="selectView">
                 <option value="month">Monatsansicht</option>
                 <option value="weeek">Wochenansicht</option>
             </select>
         </form>
+        <div id="monthSelect">
+            <!-- <input type="button" value="Januar" id="M1">
+            <input type="button" value="Februar" id="M2">
+            <input type="button" value="März" id="M3">
+            <input type="button" value="April" id="M4">
+            <input type="button" value="Mai" id="M5">
+            <input type="button" value="Juni" id="M6">
+            <input type="button" value="Juli" id="M7">
+            <input type="button" value="August" id="M8">
+            <input type="button" value="September" id="M9">
+            <input type="button" value="Oktober" id="M10">
+            <input type="button" value="November" id="M11">
+            <input type="button" value="Dezember" id="M12"> -->
+        </div>
     </nav>
     <main>
+        <wrapper>
+            <div id="week1">
+                <div class="card">
+                    <div class="cardDate">10.12.2020</div>
+                    <div class="cardTitle">Titel</div>
+                    <div class="cardText">Text</div>
+                </div>
+                <div class="card">
+                    <div class="cardDate">10.12.2020</div>
+                    <div class="cardTitle">Titel</div>
+                    <div class="cardText">Text</div>
+                </div>
+                <div class="card">
+                    <div class="cardDate">10.12.2020</div>
+                    <div class="cardTitle">Titel</div>
+                    <div class="cardText">Text</div>
+                </div>
+                <div class="card">
+                    <div class="cardDate">10.12.2020</div>
+                    <div class="cardTitle">Titel</div>
+                    <div class="cardText">Text</div>
+                </div>
+                <div class="card">
+                    <div class="cardDate">10.12.2020</div>
+                    <div class="cardTitle">Titel</div>
+                    <div class="cardText">Text</div>
+                </div>
+                <div class="card">
+                    <div class="cardDate">10.12.2020</div>
+                    <div class="cardTitle">Titel</div>
+                    <div class="cardText">Text</div>
+                </div>
+                <div class="card">
+                    <div class="cardDate">10.12.2020</div>
+                    <div class="cardTitle">Titel</div>
+                    <div class="cardText">Text</div>
+                </div>
+            </div>
+            <div id="week2">
+                <div class="card">
+                    <div class="cardDate">10.12.2020</div>
+                    <div class="cardTitle">Titel</div>
+                    <div class="cardText">Text</div>
+                </div>
+            </div>
+            <div id="week3">
+                <div class="card">
+                    <div class="cardDate">10.12.2020</div>
+                    <div class="cardTitle">Titel</div>
+                    <div class="cardText">Text</div>
+                </div>
+            </div>
+            <div id="week4">
+                <div class="card">
+                    <div class="cardDate">10.12.2020</div>
+                    <div class="cardTitle">Titel</div>
+                    <div class="cardText">Text</div>
+                </div>
+            </div>
+        </wrapper>
+
         <script>
-            document.getElementById("btnErfassen").addEventListener("click", () => (window.location='/add.html'));
-            document.getElementById("btnTest").addEventListener("click", () => clearAllCards());
-            console.log(JSON.parse(localStorage.getItem('cards')));
+
+            //console.log(JSON.parse(localStorage.getItem('cards')));
         </script>
     </main>
 </body>

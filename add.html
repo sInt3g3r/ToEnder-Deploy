@@ -13,22 +13,30 @@
        <textarea id="description" rows="4" cols="10" maxlength="100"></textarea>
        <input type="date" id="date">
        <div>
-            <input type="checkbox" id="done" name="done" value=0>
+            <input type="checkbox" id="cbDone" name="done" value=0>
             <label for="done">Fertig</label>
        </div>
        <div>
             <input type="button" value="Abbrechen" id="btnCancel">
             <input type="button" value="Speichern" id="btnSave">
             <script>
-                function test()
+                function saveTask()
                 {
-                    console.log(document.getElementById("title").value);
-                    console.log(document.getElementById("description").value);
-                    console.log(document.getElementById("date").value);
+                    const title = document.getElementById("title").value;
+                    const text = document.getElementById("description").value;
+                    const date = document.getElementById("date").value;
+                    var done = 0;
+                    if(document.getElementById("cbDone").checked == true)
+                    {
+                        done = 1;
+                    }
+                    var myTask = {"title":title,"text":text,"date":date,"done":done};
+                    addTask(myTask);
+                    window.location='index.html';
                 };
 
                 document.getElementById("btnCancel").addEventListener("click", () => (window.location='/index.html'));
-                document.getElementById("btnSave").addEventListener("click", () => test());
+                document.getElementById("btnSave").addEventListener("click", () => saveTask());
             </script>
        </div>
     </form>
