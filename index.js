@@ -18,8 +18,8 @@ var monthView = {
 
 function load() {
     document.getElementById("btnErfassen").addEventListener("click", () => (window.location='/add.html'));
-    document.getElementById("btnTest").addEventListener("click", () => generateEmptyCards(12));
-    //document.getElementById("btnTest").addEventListener("click", () => clearAllCards());
+    //document.getElementById("btnTest").addEventListener("click", () => generateEmptyCards(12));
+    document.getElementById("btnTest").addEventListener("click", () => clearAllCards());
 
     //generate Month Selection
     for(var i = 1; i < 13; i++)
@@ -51,16 +51,17 @@ function selectMonth(event)
     var target = event.target;
     target.classList.add("btnClicked");
     activeMonth = monthView[target.value];
-    console.log(activeMonth);
+    //console.log(activeMonth);
+    generateEmptyCards(activeMonth);
 }
 
 function generateEmptyCards(_month)
 {
     var today = new Date();
     var genDate = new Date(today.getFullYear()+'-'+_month+'-'+'01');
-    console.log(genDate.toString());
-    console.log(genDate.getMonth());
-    console.log(_month-1);
+    //console.log(genDate.toString());
+    //console.log(genDate.getMonth());
+    //console.log(_month-1);
     var myMonth = [];
     while(genDate.getMonth() == _month-1)
     {
@@ -69,9 +70,51 @@ function generateEmptyCards(_month)
         genDate.setDate(myDay);
     }
 
+    for(var i=0; i < 5; i++)
+    {
+        document.getElementById("week"+i).innerHTML = ``;
+    }
+
+    //console.log(searchForCard("22.11.2020"));
+
+    var weekId = 0;
     myMonth.forEach(date => {
-        console.log(date);
+        var week0ele = document.getElementById("week"+weekId);
+        var count = week0ele.getElementsByClassName("card").length;
+        //console.log(count);
+
+        if(count == 7)
+        {
+            weekId++;
+            count = 0;
+        }
+        var actualCard = searchForCard(date);
+        if(actualCard != null)
+        {
+            console.log(actualCard);
+        }
+        document.getElementById("week"+weekId).innerHTML +=
+        `
+        <div class="card">
+            <div class="cardDate">${date}</div>
+            <div class="cardTitle">Titel</div>
+            <div class="cardText">Text</div>
+        </div>
+        `;
     });
+}
+
+function searchForCard(_date)
+{
+    const cards = JSON.parse(localStorage.getItem('cards'));
+    for(var i=0; i < cards.length; i++)
+    {
+        if(cards[i].date == _date)
+        {
+            return cards[i];
+        }
+    }
+    return null
 }
 
 

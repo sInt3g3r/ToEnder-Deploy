@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="addStyle.css">
     <script src="add.js"></script>
 </head>
-<body>
+<body onload="load()">
     <form>
        <input type="text" id="title">
        <textarea id="description" rows="4" cols="10" maxlength="100"></textarea>
@@ -19,25 +19,6 @@
        <div>
             <input type="button" value="Abbrechen" id="btnCancel">
             <input type="button" value="Speichern" id="btnSave">
-            <script>
-                function saveTask()
-                {
-                    const title = document.getElementById("title").value;
-                    const text = document.getElementById("description").value;
-                    const date = document.getElementById("date").value;
-                    var done = 0;
-                    if(document.getElementById("cbDone").checked == true)
-                    {
-                        done = 1;
-                    }
-                    var myTask = {"title":title,"text":text,"date":date,"done":done};
-                    addTask(myTask);
-                    window.location='index.html';
-                };
-
-                document.getElementById("btnCancel").addEventListener("click", () => (window.location='/index.html'));
-                document.getElementById("btnSave").addEventListener("click", () => saveTask());
-            </script>
        </div>
     </form>
 </body>
