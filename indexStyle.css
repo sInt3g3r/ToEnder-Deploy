@@ -60,7 +60,7 @@ wrapper {
     flex-direction: column;
 }
 
-#week1, #week3 {
+#week0, #week2, #week4 {
     display: flex;
     justify-content: space-around;
     background-color: aqua;
@@ -68,7 +68,7 @@ wrapper {
     padding: 10px;
 }
 
-#week2, #week4 {
+#week1, #week3 {
     display: flex;
     justify-content: space-around;
     background-color: bisque;

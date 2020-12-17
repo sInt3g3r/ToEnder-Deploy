@@ -18,7 +18,8 @@ var monthView = {
 
 function load() {
     document.getElementById("btnErfassen").addEventListener("click", () => (window.location='/add.html'));
-    document.getElementById("btnTest").addEventListener("click", () => clearAllCards());
+    document.getElementById("btnTest").addEventListener("click", () => generateEmptyCards(12));
+    //document.getElementById("btnTest").addEventListener("click", () => clearAllCards());
 
     //generate Month Selection
     for(var i = 1; i < 13; i++)
@@ -53,9 +54,24 @@ function selectMonth(event)
     console.log(activeMonth);
 }
 
-function generateEmptyCards()
+function generateEmptyCards(_month)
 {
-    
+    var today = new Date();
+    var genDate = new Date(today.getFullYear()+'-'+_month+'-'+'01');
+    console.log(genDate.toString());
+    console.log(genDate.getMonth());
+    console.log(_month-1);
+    var myMonth = [];
+    while(genDate.getMonth() == _month-1)
+    {
+        myMonth.push(genDate.getDate()+'.'+(genDate.getMonth()+1)+'.'+genDate.getFullYear());
+        var myDay = genDate.getDate()+1;
+        genDate.setDate(myDay);
+    }
+
+    myMonth.forEach(date => {
+        console.log(date);
+    });
 }
 
 
