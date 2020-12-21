@@ -88,33 +88,52 @@ function generateEmptyCards(_month)
             weekId++;
             count = 0;
         }
-        var actualCard = searchForCard(date);
+        var tasks = searchForCard(date);
+        if(tasks != null)
+        {
+            console.log(tasks);
+        }
+
+
+        //TO FIX - Multiple task in card
+        var htmlCardStr = `<div class="card" id="${date}">
+                            <div class="cardDate">${date}</div>`
         if(actualCard != null)
         {
-            console.log(actualCard);
-        }
-        document.getElementById("week"+weekId).innerHTML +=
-        `
-        <div class="card">
-            <div class="cardDate">${date}</div>
-            <div class="cardTitle">Titel</div>
-            <div class="cardText">Text</div>
-        </div>
-        `;
+            htmlCardStr += `<div class="task">
+                            <textarea rows="3" cols="20" readonly>${actualCard.title}</textarea>
+                            </div>`
+        } 
+        htmlCardStr += `</div>`
+        console.log(htmlCardStr);
+
+
+        document.getElementById("week"+weekId).innerHTML += htmlCardStr;
     });
 }
 
 function searchForCard(_date)
 {
+    var taskOnDate = [];
     const cards = JSON.parse(localStorage.getItem('cards'));
-    for(var i=0; i < cards.length; i++)
+    if(cards != null)
     {
-        if(cards[i].date == _date)
+        for(var i=0; i < cards.length; i++)
         {
-            return cards[i];
+            if(cards[i].date == _date)
+            {
+                taskOnDate.push(cards[i]);
+            }
         }
     }
-    return null
+    if(taskOnDate.length < 1)
+    {
+        return null;
+    }
+    else
+    {
+        return taskOnDate;
+    }
 }
 
 

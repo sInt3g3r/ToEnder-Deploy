@@ -13,7 +13,18 @@ function saveTask()
     {
         done = 1;
     }
-    var myTask = {"title":title,"text":text,"date":date.getDate()+'.'+date.getMonth()+'.'+date.getFullYear(),"done":done};
+    
+    var cards = JSON.parse(localStorage.getItem('cards'));
+    if(cards == null)
+    {
+      var id = 0;
+    }
+    else
+    {
+      var id = cards[cards.length-1].id;
+      id++;
+    }
+    var myTask = {"id":id,"title":title,"text":text,"date":date.getDate()+'.'+(date.getMonth()+1)+'.'+date.getFullYear(),"done":done};
     addTask(myTask);
     window.location='index.html';
 };
