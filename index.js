@@ -18,8 +18,8 @@ var monthView = {
 
 function load() {
     document.getElementById("btnErfassen").addEventListener("click", () => (window.location='/add.html'));
-    //document.getElementById("btnTest").addEventListener("click", () => generateEmptyCards(12));
-    document.getElementById("btnTest").addEventListener("click", () => clearAllCards());
+    //document.getElementById("btnTest").addEventListener("click", () => generateEmptyTasks(12));
+    document.getElementById("btnTest").addEventListener("click", () => clearAllTasks());
 
     //generate Month Selection
     for(var i = 1; i < 13; i++)
@@ -36,7 +36,7 @@ function load() {
 
 }
 
-function clearAllCards()
+function clearAllTasks()
 {
     localStorage.clear();
 }
@@ -52,10 +52,10 @@ function selectMonth(event)
     target.classList.add("btnClicked");
     activeMonth = monthView[target.value];
     //console.log(activeMonth);
-    generateEmptyCards(activeMonth);
+    generateEmptyTasks(activeMonth);
 }
 
-function generateEmptyCards(_month)
+function generateEmptyTasks(_month)
 {
     var today = new Date();
     var genDate = new Date(today.getFullYear()+'-'+_month+'-'+'01');
@@ -75,7 +75,7 @@ function generateEmptyCards(_month)
         document.getElementById("week"+i).innerHTML = ``;
     }
 
-    //console.log(searchForCard("22.11.2020"));
+    //console.log(searchForTask("22.11.2020"));
 
     var weekId = 0;
     myMonth.forEach(date => {
@@ -88,41 +88,59 @@ function generateEmptyCards(_month)
             weekId++;
             count = 0;
         }
-        var tasks = searchForCard(date);
+        var tasks = searchForTask(date);
         if(tasks != null)
         {
-            console.log(tasks);
+            //console.log(tasks);
         }
 
-
-        //TO FIX - Multiple task in card
+        
         var htmlCardStr = `<div class="card" id="${date}">
-                            <div class="cardDate">${date}</div>`
-        if(actualCard != null)
+                            <div class="cardDate">${date}</div>`;
+        if(tasks != null)
         {
-            htmlCardStr += `<div class="task">
-                            <textarea rows="3" cols="20" readonly>${actualCard.title}</textarea>
-                            </div>`
-        } 
-        htmlCardStr += `</div>`
-        console.log(htmlCardStr);
+            tasks.forEach(task => {
+                    htmlCardStr += `<div class="task">
+                                    <textarea rows="3" cols="20" readonly>${task.title}</textarea>
+                                    <br>
+                                    <button type="button" id="del${task.id}">Delete</button> 
+                                    <button type="button" id="edit${task.id}">Edit</button> 
+                                    </div>`;
+            });
+        }
+        htmlCardStr += `</div>`;
+        //console.log(htmlCardStr);
 
 
         document.getElementById("week"+weekId).innerHTML += htmlCardStr;
     });
+
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    if(tasks != null)
+    {
+        for(var i=0; i < tasks.length; i++)
+        {
+            var delBtn = document.getElementById("del"+tasks[i].id);
+            if(delBtn != null)
+            {
+                delBtn.addEventListener("click", (event) => deleteTask(event));
+            }
+        }
+    }
+
 }
 
-function searchForCard(_date)
+function searchForTask(_date)
 {
     var taskOnDate = [];
-    const cards = JSON.parse(localStorage.getItem('cards'));
-    if(cards != null)
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    if(tasks != null)
     {
-        for(var i=0; i < cards.length; i++)
+        for(var i=0; i < tasks.length; i++)
         {
-            if(cards[i].date == _date)
+            if(tasks[i].date == _date)
             {
-                taskOnDate.push(cards[i]);
+                taskOnDate.push(tasks[i]);
             }
         }
     }
@@ -136,4 +154,25 @@ function searchForCard(_date)
     }
 }
 
+function deleteTask(event)
+{
+    const btnId  = event.target.id.substring(3,event.target.id.length);
+    let tasks = JSON.parse(localStorage.getItem('tasks'));
+    let id = null;
+    if(tasks != null)
+    {
+        for(var i=0; i < tasks.length; i++)
+        {
+            if(tasks[i].id == btnId)
+            {
+                id = tasks[i].id;
+                break;
+            }
+        }
+        tasks.splice(id,1);
+        let data = JSON.stringify(tasks);
+        localStorage.setItem('tasks', data);
+        console.log(JSON.parse(localStorage.getItem('tasks')));
+    }
+}
 

@@ -64,7 +64,6 @@ wrapper {
     display: flex;
     justify-content: space-around;
     background-color: aqua;
-    height: 80px;
     padding: 10px;
 }
 
@@ -76,6 +75,8 @@ wrapper {
 }
 
 .card {
+    display: flex;
+    flex-direction: column;
     padding: 10px;
     border: 1px solid green;
     border-radius: 5px;

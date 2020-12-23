@@ -14,14 +14,14 @@ function saveTask()
         done = 1;
     }
     
-    var cards = JSON.parse(localStorage.getItem('cards'));
-    if(cards == null)
+    var tasks = JSON.parse(localStorage.getItem('tasks'));
+    if(tasks == null)
     {
       var id = 0;
     }
     else
     {
-      var id = cards[cards.length-1].id;
+      var id = tasks[tasks.length-1].id;
       id++;
     }
     var myTask = {"id":id,"title":title,"text":text,"date":date.getDate()+'.'+(date.getMonth()+1)+'.'+date.getFullYear(),"done":done};
@@ -30,20 +30,13 @@ function saveTask()
 };
 
 function addTask(task) {
-   var cards = JSON.parse(localStorage.getItem('cards'));
-   if(cards == null)
+   var tasks = JSON.parse(localStorage.getItem('tasks'));
+   if(tasks == null)
    {
-     cards = [];
+     tasks = [];
    }
-   cards.push(task);
-   let data = JSON.stringify(cards);
-   localStorage.setItem('cards', data);
-   console.log(JSON.parse(localStorage.getItem('cards')));
+   tasks.push(task);
+   let data = JSON.stringify(tasks);
+   localStorage.setItem('tasks', data);
+   console.log(JSON.parse(localStorage.getItem('tasks')));
 }
-
-// function saveCards(){
-//     let data = JSON.stringify(cards);
-//     localStorage.setItem('cards', data);
-//     let read = JSON.parse(localStorage.getItem('cards'));
-//     console.log(read);
-// }
