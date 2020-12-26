@@ -15,7 +15,7 @@ function saveTask()
     }
     
     var tasks = JSON.parse(localStorage.getItem('tasks'));
-    if(tasks == null)
+    if(tasks == null || tasks.length == 0)
     {
       var id = 0;
     }
