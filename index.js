@@ -125,6 +125,11 @@ function generateEmptyTasks(_month)
             {
                 delBtn.addEventListener("click", (event) => deleteTask(event));
             }
+            var editBtn = document.getElementById("edit"+tasks[i].id);
+            if(editBtn != null)
+            {
+                editBtn.addEventListener("click", (event) => editTask(event));
+            }
         }
     }
 
@@ -176,3 +181,22 @@ function deleteTask(event)
     }
 }
 
+function editTask(event)
+{
+    const btnId  = event.target.id.substring(4,event.target.id.length);
+    let tasks = JSON.parse(localStorage.getItem('tasks'));
+    let id = null;
+    if(tasks != null)
+    {
+        for(var i=0; i < tasks.length; i++)
+        {
+            if(tasks[i].id == btnId)
+            {
+                id = tasks[i].id;
+                break;
+            }
+        }
+    }
+    console.log(id);
+    //window.location = '/add.html'
+}
