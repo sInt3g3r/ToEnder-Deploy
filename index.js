@@ -197,6 +197,7 @@ function editTask(event)
             }
         }
     }
-    console.log(id);
-    //window.location = '/add.html'
+    //console.log(id);
+    localStorage.setItem('editID', id);
+    window.location = '/edit.html'
 }
