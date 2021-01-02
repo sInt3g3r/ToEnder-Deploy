@@ -1,4 +1,4 @@
-var activeMonth = 01;
+var activeMonthBtn = null;
 
 var monthView = {
         "empty":00,
@@ -31,9 +31,14 @@ function load() {
     for(var i = 1; i < 13; i++)
     {
         var btnName = "M" + i; 
-        document.getElementById(btnName).addEventListener("click", (event) => selectMonth(event));
+        document.getElementById(btnName).addEventListener("click", (event) => selectMonth(event,null));
+        if(i == 1)
+        {
+            activeMonthBtn = document.getElementById(btnName);
+        }
     }
-
+    selectMonth(null,1);
+    console.log(JSON.parse(localStorage.getItem('tasks')));
 }
 
 function clearAllTasks()
@@ -41,18 +46,27 @@ function clearAllTasks()
     localStorage.clear();
 }
 
-function selectMonth(event)
+function selectMonth(event,month)
 {
-    for(var i = 1; i < 13; i++)
+    if(month == null)
     {
-        var btnName = "M" + i; 
-        document.getElementById(btnName).classList.remove("btnClicked");
+        for(var i = 1; i < 13; i++)
+        {
+            var btnName = "M" + i; 
+            document.getElementById(btnName).classList.remove("btnClicked");
+        }
+        activeMonthBtn = event.target;
+        activeMonthBtn.classList.add("btnClicked");
+        var activeMonth = monthView[activeMonthBtn.value];
+        generateEmptyTasks(activeMonth);
     }
-    var target = event.target;
-    target.classList.add("btnClicked");
-    activeMonth = monthView[target.value];
-    //console.log(activeMonth);
-    generateEmptyTasks(activeMonth);
+    else
+    {
+        var btnName = "M" + month;
+        activeMonthBtn = document.getElementById(btnName);
+        activeMonthBtn.classList.add("btnClicked");
+        generateEmptyTasks(month);
+    }  
 }
 
 function generateEmptyTasks(_month)
@@ -161,24 +175,28 @@ function searchForTask(_date)
 
 function deleteTask(event)
 {
-    const btnId  = event.target.id.substring(3,event.target.id.length);
-    let tasks = JSON.parse(localStorage.getItem('tasks'));
-    let id = null;
-    if(tasks != null)
+    if(confirm("Task wirklich Löschen?"))
     {
-        for(var i=0; i < tasks.length; i++)
+        const btnId  = event.target.id.substring(3,event.target.id.length);
+        let tasks = JSON.parse(localStorage.getItem('tasks'));
+        let id = null;
+        if(tasks != null)
         {
-            if(tasks[i].id == btnId)
+            for(var i=0; i < tasks.length; i++)
             {
-                id = tasks[i].id;
-                break;
+                if(tasks[i].id == btnId)
+                {
+                    id = i;
+                    break;
+                }
             }
+            tasks.splice(id,1);
+            let data = JSON.stringify(tasks);
+            localStorage.setItem('tasks', data);
+            //console.log(JSON.parse(localStorage.getItem('tasks')));
         }
-        tasks.splice(id,1);
-        let data = JSON.stringify(tasks);
-        localStorage.setItem('tasks', data);
-        console.log(JSON.parse(localStorage.getItem('tasks')));
     }
+    selectMonth(null,monthView[activeMonthBtn.value]);
 }
 
 function editTask(event)
