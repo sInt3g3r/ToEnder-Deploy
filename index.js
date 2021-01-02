@@ -18,8 +18,7 @@ var monthView = {
 
 function load() {
     document.getElementById("btnErfassen").addEventListener("click", () => (window.location='/add.html'));
-    //document.getElementById("btnTest").addEventListener("click", () => generateEmptyTasks(12));
-    document.getElementById("btnTest").addEventListener("click", () => clearAllTasks());
+    document.getElementById("btnClear").addEventListener("click", () => clearAllTasks());
 
     //generate Month Selection
     for(var i = 1; i < 13; i++)
@@ -43,7 +42,10 @@ function load() {
 
 function clearAllTasks()
 {
-    localStorage.clear();
+    if(confirm("ACHTUNG: Es werden ALLE Einträge gelöscht. Wirklich Löschen?"))
+    {
+        localStorage.clear();
+    }
 }
 
 function selectMonth(event,month)
@@ -73,9 +75,6 @@ function generateEmptyTasks(_month)
 {
     var today = new Date();
     var genDate = new Date(today.getFullYear()+'-'+_month+'-'+'01');
-    //console.log(genDate.toString());
-    //console.log(genDate.getMonth());
-    //console.log(_month-1);
     var myMonth = [];
     while(genDate.getMonth() == _month-1)
     {
@@ -89,13 +88,10 @@ function generateEmptyTasks(_month)
         document.getElementById("week"+i).innerHTML = ``;
     }
 
-    //console.log(searchForTask("22.11.2020"));
-
     var weekId = 0;
     myMonth.forEach(date => {
         var week0ele = document.getElementById("week"+weekId);
         var count = week0ele.getElementsByClassName("card").length;
-        //console.log(count);
 
         if(count == 7)
         {
@@ -103,12 +99,6 @@ function generateEmptyTasks(_month)
             count = 0;
         }
         var tasks = searchForTask(date);
-        if(tasks != null)
-        {
-            //console.log(tasks);
-        }
-
-        
         var htmlCardStr = `<div class="card" id="${date}">
                             <div class="cardDate">${date}</div>`;
         if(tasks != null)
@@ -117,15 +107,12 @@ function generateEmptyTasks(_month)
                     htmlCardStr += `<div class="task">
                                     <textarea rows="3" cols="20" readonly>${task.title}</textarea>
                                     <br>
-                                    <button type="button" id="del${task.id}">Delete</button> 
-                                    <button type="button" id="edit${task.id}">Edit</button> 
+                                    <button type="button" id="del${task.id}" class="btnTask">Delete</button> 
+                                    <button type="button" id="edit${task.id}" class="btnTask">Edit</button> 
                                     </div>`;
             });
         }
         htmlCardStr += `</div>`;
-        //console.log(htmlCardStr);
-
-
         document.getElementById("week"+weekId).innerHTML += htmlCardStr;
     });
 
@@ -138,11 +125,15 @@ function generateEmptyTasks(_month)
             if(delBtn != null)
             {
                 delBtn.addEventListener("click", (event) => deleteTask(event));
+                delBtn.classList.add("btnHover");
+                delBtn.classList.add("btnTask");
             }
             var editBtn = document.getElementById("edit"+tasks[i].id);
             if(editBtn != null)
             {
                 editBtn.addEventListener("click", (event) => editTask(event));
+                editBtn.classList.add("btnHover");
+                editBtn.classList.add("btnTask");
             }
         }
     }
@@ -193,7 +184,6 @@ function deleteTask(event)
             tasks.splice(id,1);
             let data = JSON.stringify(tasks);
             localStorage.setItem('tasks', data);
-            //console.log(JSON.parse(localStorage.getItem('tasks')));
         }
     }
     selectMonth(null,monthView[activeMonthBtn.value]);
@@ -215,7 +205,6 @@ function editTask(event)
             }
         }
     }
-    //console.log(id);
     localStorage.setItem('editID', id);
     window.location = '/edit.html'
 }

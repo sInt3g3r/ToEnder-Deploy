@@ -3,7 +3,6 @@ var editIndex = null;
 function load() {
   document.getElementById("btnCancel").addEventListener("click", () => (window.location='/index.html'));
   document.getElementById("btnSave").addEventListener("click", saveTask);
-  document.getElementById("btnTest").addEventListener("click", getEditTask);
   getEditTask();
 }
 

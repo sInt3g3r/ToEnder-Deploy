@@ -33,19 +33,19 @@ form {
 }
 
 input[type=button] {
+    height: 20px;
     border-radius: 5px;
     width: 80px;
     margin: 3px 0;
     margin-left: 10px;
 }
 
-input[type=button]:hover {
+input[type=button]:hover, .btnHover:hover {
     background-color: blue;
     color:white;
 }
 
-#selectView{
-    width: 120px;
+#btnClear{
     margin: 3px 0;
     margin-right: 10px;
 }
@@ -98,3 +98,9 @@ wrapper {
     color:white;
   }
   
+.btnTask {
+    height: 20px;
+    border-radius: 5px;
+    width: 60px;
+    margin: 3px 0;
+}
