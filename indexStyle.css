@@ -22,14 +22,14 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: yellow;
+    background-color: bisque;
+    border-radius: 20px;
 }
 
 form {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: blue;
 }
 
 input[type=button] {
@@ -52,7 +52,7 @@ input[type=button]:hover, .btnHover:hover {
 
 #monthSelect{
     padding: 5px 0px ;
-    background-color: orange;
+    background-color: greenyellow;
 }
 
 wrapper {
@@ -63,7 +63,7 @@ wrapper {
 #week0, #week2, #week4 {
     display: flex;
     justify-content: space-around;
-    background-color: aqua;
+    background-color: khaki;
     padding: 10px;
 }
 
@@ -103,4 +103,25 @@ wrapper {
     border-radius: 5px;
     width: 60px;
     margin: 3px 0;
+}
+
+.divStatus {
+    margin: 3px 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+}
+
+.statusToDo {
+    background-color: orange;  
+}
+
+.statusDone {
+    background-color: green;
+}
+
+.cardControl {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }

@@ -107,8 +107,11 @@ function generateEmptyTasks(_month)
                     htmlCardStr += `<div class="task">
                                     <textarea rows="3" cols="20" readonly>${task.title}</textarea>
                                     <br>
-                                    <button type="button" id="del${task.id}" class="btnTask">Delete</button> 
-                                    <button type="button" id="edit${task.id}" class="btnTask">Edit</button> 
+                                    <div class="cardControl">
+                                        <button type="button" id="del${task.id}" class="btnTask">Delete</button> 
+                                        <button type="button" id="edit${task.id}" class="btnTask">Edit</button> 
+                                        <div class="divStatus" id="status${task.id}"></div>
+                                    </div>
                                     </div>`;
             });
         }
@@ -134,6 +137,15 @@ function generateEmptyTasks(_month)
                 editBtn.addEventListener("click", (event) => editTask(event));
                 editBtn.classList.add("btnHover");
                 editBtn.classList.add("btnTask");
+            }
+            var divStatus = document.getElementById("status"+tasks[i].id);
+            if(tasks[i].done == 1)
+            {
+                divStatus.classList.add("statusDone");
+            }
+            else
+            {
+                divStatus.classList.add("statusToDo");
             }
         }
     }
