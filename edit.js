@@ -19,18 +19,12 @@ function getEditTask()
         if(tasks[i].id == editID)
         {
           editIndex = i;
-          // console.log(tasks[i]);
         }
       }
-      //  var ele = document.getElementById("date")
-      //  console.log(ele);
-      //console.log();
       document.getElementById("title").value = tasks[editIndex].title;
       document.getElementById("description").value = tasks[editIndex].text;
       var splitDate = tasks[editIndex].date.split('.');
-      // console.log(splitDate);
       var taskDate = new Date(splitDate[2]+"-"+splitDate[1]+"-"+splitDate[0]);
-      // console.log(taskDate);
       document.getElementById("date").valueAsDate = taskDate;
       if(tasks[editIndex].done == 1)
       {

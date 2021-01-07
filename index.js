@@ -37,7 +37,6 @@ function load() {
         }
     }
     selectMonth(null,1);
-    console.log(JSON.parse(localStorage.getItem('tasks')));
 }
 
 function clearAllTasks()
