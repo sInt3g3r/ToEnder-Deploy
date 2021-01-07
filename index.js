@@ -45,6 +45,7 @@ function clearAllTasks()
     if(confirm("ACHTUNG: Es werden ALLE Einträge gelöscht. Wirklich Löschen?"))
     {
         localStorage.clear();
+        selectMonth(null,monthView[activeMonthBtn.value]);
     }
 }
 
@@ -139,13 +140,16 @@ function generateEmptyTasks(_month)
                 editBtn.classList.add("btnTask");
             }
             var divStatus = document.getElementById("status"+tasks[i].id);
-            if(tasks[i].done == 1)
+            if(divStatus != null)
             {
-                divStatus.classList.add("statusDone");
-            }
-            else
-            {
-                divStatus.classList.add("statusToDo");
+                if(tasks[i].done == 1)
+                {
+                    divStatus.classList.add("statusDone");
+                }
+                else
+                {
+                    divStatus.classList.add("statusToDo");
+                }
             }
         }
     }
